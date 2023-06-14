@@ -1,0 +1,35 @@
+* {
+  border: 1px red solid;
+}
+body {
+  margin: 0;
+  height: 100%;
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+#title {
+  height: 10vh;
+  background-color: rgb(233, 233, 233);
+  width: 100vw;
+  color: rgb(14, 15, 15);
+  font-size: xx-large;
+}
+
+#contents {
+  margin-top: 10px;
+}
+#main {
+  height: 800px;
+  width: 800px;
+}
+
+#side-bar {
+  height: 800px;
+  width: 200px;
+  /* display: none; */
+}
