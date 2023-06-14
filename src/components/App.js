@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "../styles/App.css";
 
 function App() {
@@ -23,6 +23,9 @@ function App() {
     email: "",
     photo: null,
   });
+
+  const [appealText, setAppealText] = useState("");
+  const [kibouText, setKibouText] = useState("");
 
   const [formDataEducational, setFormDataEducational] = useState({
     items: [
@@ -96,6 +99,34 @@ function App() {
     }
 
     return age;
+  };
+
+  const textareaAppealRef = useRef(null);
+  const textareaKibouRef = useRef(null);
+
+  useEffect(() => {
+    adjustTextareaHeight(textareaAppealRef);
+  }, [appealText]);
+
+  useEffect(() => {
+    adjustTextareaHeight(textareaKibouRef);
+  }, [kibouText]);
+
+  const handleChangeAppealText = (e) => {
+    const text = e.target.value;
+    setAppealText(text);
+  };
+
+  const handleChangeKibouText = (e) => {
+    const text = e.target.value;
+    setKibouText(text);
+  };
+
+  const adjustTextareaHeight = (ref) => {
+    if (ref.current) {
+      ref.current.style.height = "auto";
+      ref.current.style.height = ref.current.scrollHeight + "px";
+    }
   };
 
   const handleChange = (e) => {
@@ -600,14 +631,48 @@ function App() {
               ))}
             </tbody>
           </table>
+          <div className="border flex-grow"></div>
+          {/* shiboudouki */}
+          <div className="flex-start text-vertically-center marginTop5">
+            <label htmlFor="appeal" className="label-length100">
+              志望動機:
+            </label>
+            <textarea
+              ref={textareaAppealRef}
+              id="appeal"
+              name="appeal"
+              value={appealText}
+              onChange={handleChangeAppealText}
+              className="flex-grow"
+            />
+          </div>
+
+          <div className="border flex-grow"></div>
+
+          {/* honnin kibou */}
+
+          <div className="flex-start text-vertically-center marginTop5">
+            <label htmlFor="kibou" className="label-length100">
+              本人希望欄:
+            </label>
+            <textarea
+              ref={textareaKibouRef}
+              id="kibou"
+              name="kibou"
+              value={kibouText}
+              onChange={handleChangeKibouText}
+              className="flex-grow"
+            />
+          </div>
+
+          <div className="border flex-grow"></div>
         </div>
         <div id="side-bar"></div>
       </div>
 
-      {/* shiboudouki */}
-      {/* honnin kibou */}
-
       {/* display whole rirekisho PDF*/}
+      {/* A4サイズは、210mm × 297mm */}
+      {/* B5サイズは「182mm × 257mm」 */}
     </>
   );
 }
