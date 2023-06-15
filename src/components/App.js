@@ -491,7 +491,7 @@ function App() {
                 </div>
               </form>
             </div>
-            <Preview appealText={appealText} kibouText={kibouText} />
+            <Preview appealText={appealText} kibouText={kibouText} formDataHistory={formDataHistory}/>
 
             {isEditWindowOpen === true ? (
               <EditWindow
