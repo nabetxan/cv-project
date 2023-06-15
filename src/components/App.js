@@ -291,8 +291,15 @@ function App() {
   };
   return (
     <>
-      <div id="title">履歴書</div>
+      <div id="title">履歴書テンプレ作成ネーター</div>
+
       <div id="contents" className="flex-center">
+        
+        <div id="a4"></div>
+        <div id="side-bar">
+          <div>A4サイズプレビュー</div>
+        </div>
+
         <div id="main">
           <div id="general">
             <form>
@@ -667,7 +674,6 @@ function App() {
 
           <div className="border flex-grow"></div>
         </div>
-        <div id="side-bar"></div>
       </div>
 
       {/* display whole rirekisho PDF*/}
