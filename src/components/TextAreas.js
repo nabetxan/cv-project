@@ -17,7 +17,6 @@ function TextAreas({ appealText, kibouText, handleChangeTextArea }) {
     }
   };
 
-  console.log("appealText", appealText, "kibouText", kibouText);
   return (
     <>
       {/* shiboudouki */}

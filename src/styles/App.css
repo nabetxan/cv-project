@@ -17,19 +17,6 @@ body {
   font-size: xx-large;
 }
 
-#contents {
-  margin-top: 10px;
-}
-#main {
-  height: 660px;
-  width: 1000px;
-}
-
-#side-bar {
-  height: 800px;
-  width: 200px;
-}
-
 .space-between {
   display: flex;
   justify-content: space-between;
@@ -161,16 +148,18 @@ td > input {
   border: 1px solid black;
   box-shadow: 2px 2px 2px grey;
   margin: 50px;
-  padding:50px;
+  padding: 50px;
+  background-color: rgb(243, 244, 245);
 }
 
 #edit-window {
+  padding: 50px;
   width: 210mm;
-  height: 500px;
-  position: fixed;
-  top: 50％;
+  height: 600px;
+  position: absolute;
+  top: 0％;
   left: 10%;
-  transform: translate(0%, 20%);
+  transform: translate(5%, -40%);
   z-index: 2;
   background-color: rgb(191, 241, 241);
 }

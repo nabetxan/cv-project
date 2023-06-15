@@ -1,6 +1,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import TextAreas from "./TextAreas";
+import HistoryList from "./HistoryList";
 
 function EditWindow({
   handleisEditWindowOpen,
@@ -8,6 +9,10 @@ function EditWindow({
   appealText,
   kibouText,
   handleChangeTextArea,
+  formDataHistory,
+  handleChangeHistory,
+  handleAddItemHistory,
+  handleDeleteItemHistory,
 }) {
   return (
     <div id="edit-window">
@@ -26,6 +31,13 @@ function EditWindow({
         <CloseIcon />
       </IconButton>
       {selectedButton}
+
+      <HistoryList
+        formDataHistory={formDataHistory}
+        handleChangeHistory={handleChangeHistory}
+        handleAddItemHistory={handleAddItemHistory}
+        handleDeleteItemHistory={handleDeleteItemHistory}
+      />
       <TextAreas
         appealText={appealText}
         kibouText={kibouText}
