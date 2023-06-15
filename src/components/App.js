@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import "../styles/App.css";
+import Sidebar from "./Sidebar";
+import { styled } from "@mui/material/styles";
+import MuiAppBar from "@mui/material/AppBar";
+import EditWindow from "./EditWindow";
 
 function App() {
+  const [selectedButton, setSelectedButton] = useState(null);
+  const [isEditWindowOpen, setIsEditWindowOpen] = useState(false);
   const [formDataGeneralInfo, setFormData] = useState({
     lastUpdate: {
       modifiedvalue: {
@@ -23,6 +29,15 @@ function App() {
     email: "",
     photo: null,
   });
+
+  const handleisEditWindowOpen = function (buttonClicked) {
+    if (selectedButton === buttonClicked) {
+      setIsEditWindowOpen(!isEditWindowOpen);
+    } else {
+      setSelectedButton(buttonClicked);
+      setIsEditWindowOpen(true);
+    }
+  };
 
   const [appealText, setAppealText] = useState("");
   const [kibouText, setKibouText] = useState("");
@@ -289,15 +304,65 @@ function App() {
       };
     });
   };
+
+  //settings for side bar
+  const drawerWidth = 440;
+
+  const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+    ({ theme, open }) => ({
+      flexGrow: 1,
+      padding: theme.spacing(3),
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      marginRight: -drawerWidth,
+      ...(open && {
+        transition: theme.transitions.create("margin", {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginRight: 0,
+      }),
+    })
+  );
+
+  const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== "open",
+  })(({ theme, open }) => ({
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(open && {
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: drawerWidth,
+    }),
+  }));
+
+  const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-start",
+  }));
+
   return (
     <>
-      <div id="title">履歴書テンプレ作成ネーター</div>
-
       <div id="contents" className="flex-center">
-        
-        <div id="a4"></div>
         <div id="side-bar">
-          <div>A4サイズプレビュー</div>
+          <Sidebar
+            DrawerHeader={DrawerHeader}
+            drawerWidth={drawerWidth}
+            Main={Main}
+            AppBar={AppBar}
+            handleisEditWindowOpen={handleisEditWindowOpen}
+          />
         </div>
 
         <div id="main">
@@ -674,6 +739,12 @@ function App() {
 
           <div className="border flex-grow"></div>
         </div>
+        {isEditWindowOpen === true ? (
+          <EditWindow
+            handleisEditWindowOpen={handleisEditWindowOpen}
+            selectedButton={selectedButton}
+          />
+        ) : null}
       </div>
 
       {/* display whole rirekisho PDF*/}
