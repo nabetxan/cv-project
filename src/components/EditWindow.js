@@ -1,7 +1,14 @@
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import TextAreas from "./TextAreas";
 
-function EditWindow({ handleisEditWindowOpen, selectedButton }) {
+function EditWindow({
+  handleisEditWindowOpen,
+  selectedButton,
+  appealText,
+  kibouText,
+  handleChangeTextArea,
+}) {
   return (
     <div id="edit-window">
       <IconButton
@@ -19,6 +26,11 @@ function EditWindow({ handleisEditWindowOpen, selectedButton }) {
         <CloseIcon />
       </IconButton>
       {selectedButton}
+      <TextAreas
+        appealText={appealText}
+        kibouText={kibouText}
+        handleChangeTextArea={handleChangeTextArea}
+      />
     </div>
   );
 }

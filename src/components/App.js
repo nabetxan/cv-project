@@ -1,13 +1,65 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import "../styles/App.css";
 import Sidebar from "./Sidebar";
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import EditWindow from "./EditWindow";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
+import MenuIcon from "@mui/icons-material/Menu";
+import IconButton from "@mui/material/IconButton";
+import Preview from "./Preview";
+
+//settings for side bar.
+// This part has to be out side of function. (it re-renders too much)
+const drawerWidth = 440;
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginRight: -drawerWidth,
+    ...(open && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: 0,
+    }),
+  })
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: drawerWidth,
+  }),
+}));
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-start",
+}));
 
 function App() {
-  const [selectedButton, setSelectedButton] = useState(null);
-  const [isEditWindowOpen, setIsEditWindowOpen] = useState(false);
   const [formDataGeneralInfo, setFormData] = useState({
     lastUpdate: {
       modifiedvalue: {
@@ -29,18 +81,6 @@ function App() {
     email: "",
     photo: null,
   });
-
-  const handleisEditWindowOpen = function (buttonClicked) {
-    if (selectedButton === buttonClicked) {
-      setIsEditWindowOpen(!isEditWindowOpen);
-    } else {
-      setSelectedButton(buttonClicked);
-      setIsEditWindowOpen(true);
-    }
-  };
-
-  const [appealText, setAppealText] = useState("");
-  const [kibouText, setKibouText] = useState("");
 
   const [formDataEducational, setFormDataEducational] = useState({
     items: [
@@ -90,6 +130,30 @@ function App() {
     ],
   });
 
+  const [appealText, setAppealText] = useState("nantonaku");
+  const [kibouText, setKibouText] = useState("nandemoii");
+  const [selectedButton, setSelectedButton] = useState(null);
+  const [isEditWindowOpen, setIsEditWindowOpen] = useState(false);
+
+  const [openSidebar, setOpenSidebar] = useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpenSidebar(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpenSidebar(false);
+  };
+
+  const handleisEditWindowOpen = function (buttonClicked) {
+    if (selectedButton === buttonClicked) {
+      setIsEditWindowOpen(!isEditWindowOpen);
+    } else {
+      setSelectedButton(buttonClicked);
+      setIsEditWindowOpen(true);
+    }
+  };
+
   const calculateAge = () => {
     const currentYear = parseInt(
       formDataGeneralInfo.lastUpdate.modifiedvalue.lastUpdateYear
@@ -112,35 +176,18 @@ function App() {
     ) {
       age -= 1;
     }
-
     return age;
   };
 
-  const textareaAppealRef = useRef(null);
-  const textareaKibouRef = useRef(null);
-
-  useEffect(() => {
-    adjustTextareaHeight(textareaAppealRef);
-  }, [appealText]);
-
-  useEffect(() => {
-    adjustTextareaHeight(textareaKibouRef);
-  }, [kibouText]);
-
-  const handleChangeAppealText = (e) => {
+  const handleChangeTextArea = (e) => {
     const text = e.target.value;
-    setAppealText(text);
-  };
+    const name = e.target.name;
 
-  const handleChangeKibouText = (e) => {
-    const text = e.target.value;
-    setKibouText(text);
-  };
-
-  const adjustTextareaHeight = (ref) => {
-    if (ref.current) {
-      ref.current.style.height = "auto";
-      ref.current.style.height = ref.current.scrollHeight + "px";
+    if (name === "appeal") {
+      setAppealText(text);
+    }
+    if (name === "kibou") {
+      setKibouText(text);
     }
   };
 
@@ -305,65 +352,63 @@ function App() {
     });
   };
 
-  //settings for side bar
-  const drawerWidth = 440;
-
-  const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-    ({ theme, open }) => ({
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginRight: -drawerWidth,
-      ...(open && {
-        transition: theme.transitions.create("margin", {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginRight: 0,
-      }),
-    })
-  );
-
-  const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== "open",
-  })(({ theme, open }) => ({
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginRight: drawerWidth,
-    }),
-  }));
-
-  const DrawerHeader = styled("div")(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-start",
-  }));
-
   return (
     <>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar position="fixed" open={openSidebar}>
+          <Toolbar>
+            <Typography
+              id="title"
+              variant="h6"
+              noWrap
+              sx={{ flexGrow: 1 }}
+              component="div"
+            >
+              履歴書テンプレ作成ネーター
+            </Typography>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              sx={{ ...(openSidebar && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Main open={openSidebar}>
+          <DrawerHeader />
+
+          <div>A4サイズプレビュー</div>
+          <div id="a4">
+            <Preview appealText={appealText} kibouText={kibouText}/>
+            {isEditWindowOpen === true ? (
+              <EditWindow
+                handleisEditWindowOpen={handleisEditWindowOpen}
+                selectedButton={selectedButton}
+                appealText={appealText}
+                kibouText={kibouText}
+                handleChangeTextArea={handleChangeTextArea}
+              />
+            ) : null}
+          </div>
+        </Main>
+
+        <Sidebar
+          DrawerHeader={DrawerHeader}
+          drawerWidth={drawerWidth}
+          Main={Main}
+          AppBar={AppBar}
+          handleisEditWindowOpen={handleisEditWindowOpen}
+          openSidebar={openSidebar}
+          handleDrawerClose={handleDrawerClose}
+        />
+      </Box>
+
       <div id="contents" className="flex-center">
-        <div id="side-bar">
-          <Sidebar
-            DrawerHeader={DrawerHeader}
-            drawerWidth={drawerWidth}
-            Main={Main}
-            AppBar={AppBar}
-            handleisEditWindowOpen={handleisEditWindowOpen}
-          />
-        </div>
+        <div id="side-bar"></div>
 
         <div id="main">
           <div id="general">
@@ -704,47 +749,9 @@ function App() {
             </tbody>
           </table>
           <div className="border flex-grow"></div>
-          {/* shiboudouki */}
-          <div className="flex-start text-vertically-center marginTop5">
-            <label htmlFor="appeal" className="label-length100">
-              志望動機:
-            </label>
-            <textarea
-              ref={textareaAppealRef}
-              id="appeal"
-              name="appeal"
-              value={appealText}
-              onChange={handleChangeAppealText}
-              className="flex-grow"
-            />
-          </div>
-
-          <div className="border flex-grow"></div>
-
-          {/* honnin kibou */}
-
-          <div className="flex-start text-vertically-center marginTop5">
-            <label htmlFor="kibou" className="label-length100">
-              本人希望欄:
-            </label>
-            <textarea
-              ref={textareaKibouRef}
-              id="kibou"
-              name="kibou"
-              value={kibouText}
-              onChange={handleChangeKibouText}
-              className="flex-grow"
-            />
-          </div>
 
           <div className="border flex-grow"></div>
         </div>
-        {isEditWindowOpen === true ? (
-          <EditWindow
-            handleisEditWindowOpen={handleisEditWindowOpen}
-            selectedButton={selectedButton}
-          />
-        ) : null}
       </div>
 
       {/* display whole rirekisho PDF*/}
