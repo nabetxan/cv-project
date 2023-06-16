@@ -54,22 +54,30 @@ body {
 #lastUpdateYear,
 #birthdayYear,
 #age {
-  width: 45px;
+  width: 55px;
 }
 
 #lastUpdateMonth,
 #lastUpdateDay,
 #birthdayMonth,
 #birthdayDay {
-  width: 30px;
+  width: 40px;
 }
 
+.phone-label,
+.email-label {
+  width: 55px;
+}
 .flex-grow {
   flex-grow: 1;
 }
 
 .label-length100 {
   width: 100px;
+}
+
+.label-length75 {
+  width: 75px;
 }
 
 .label-length80 {
@@ -159,7 +167,8 @@ td > input {
   position: absolute;
   top: 0％;
   left: 10%;
-  transform: translate(5%, -40%);
+  transform: translate(7%, -105%);
   z-index: 2;
   background-color: rgb(191, 241, 241);
+  overflow: scroll;
 }

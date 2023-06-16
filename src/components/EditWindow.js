@@ -2,6 +2,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import TextAreas from "./TextAreas";
 import HistoryList from "./HistoryList";
+import GeneralInfo from "./GeneralInfo";
 
 function EditWindow({
   handleisEditWindowOpen,
@@ -13,6 +14,10 @@ function EditWindow({
   handleChangeHistory,
   handleAddItemHistory,
   handleDeleteItemHistory,
+  calculateAge,
+  handleChangeGeneralInfo,
+  formDataGeneralInfo,
+  handlePhotoUpload,
 }) {
   return (
     <div id="edit-window">
@@ -30,7 +35,14 @@ function EditWindow({
       >
         <CloseIcon />
       </IconButton>
-      {selectedButton}
+      <div className="font-large">{selectedButton}</div>
+
+      <GeneralInfo
+        calculateAge={calculateAge}
+        handleChangeGeneralInfo={handleChangeGeneralInfo}
+        formDataGeneralInfo={formDataGeneralInfo}
+        handlePhotoUpload={handlePhotoUpload}
+      />
 
       <HistoryList
         formDataHistory={formDataHistory}

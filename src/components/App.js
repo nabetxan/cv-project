@@ -235,7 +235,7 @@ function App() {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChangeGeneralInfo = (e) => {
     const { name, value } = e.target;
 
     if (
@@ -313,185 +313,13 @@ function App() {
 
           <div>A4サイズプレビュー</div>
           <div id="a4">
-            <div id="general">
-              <form>
-                <div className="">
-                  <div className="flex-center">
-                    <div className="col flex-grow">
-                      <div className="space-between text-vertically-center">
-                        <div className="font-large margin5 bold">履歴書</div>
-
-                        <div className="flex-shrink text-vertically-center">
-                          <input
-                            type="number"
-                            id="lastUpdateYear"
-                            name="lastUpdateYear"
-                            value={
-                              formDataGeneralInfo.lastUpdate.modifiedvalue
-                                .lastUpdateYear
-                            }
-                            onChange={handleChange}
-                          />
-                          <label htmlFor="lastUpdateYear">年</label>
-                          <input
-                            type="number"
-                            id="lastUpdateMonth"
-                            name="lastUpdateMonth"
-                            value={
-                              formDataGeneralInfo.lastUpdate.modifiedvalue
-                                .lastUpdateMonth
-                            }
-                            onChange={handleChange}
-                          />
-                          <label htmlFor="lastUpdateMonth">月</label>
-                          <input
-                            type="number"
-                            id="lastUpdateDay"
-                            name="lastUpdateDay"
-                            value={
-                              formDataGeneralInfo.lastUpdate.modifiedvalue
-                                .lastUpdateDay
-                            }
-                            onChange={handleChange}
-                          />
-                          <label htmlFor="lastUpdateDay">日　現在</label>
-                        </div>
-                      </div>
-                      <div className="border"></div>
-                      <div className="flex-start text-vertically-center marginTop5">
-                        <label
-                          htmlFor="nameFurigana"
-                          className="label-length100"
-                        >
-                          ふりがな:
-                        </label>
-                        <input
-                          type="text"
-                          id="nameFurigana"
-                          name="nameFurigana"
-                          value={formDataGeneralInfo.nameFurigana}
-                          onChange={handleChange}
-                          className="flex-grow"
-                        />
-                      </div>
-
-                      <div className="flex-start text-vertically-center">
-                        <label htmlFor="name" className="label-length100">
-                          氏名:
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formDataGeneralInfo.name}
-                          onChange={handleChange}
-                          className="flex-grow"
-                        />
-                      </div>
-
-                      <div className="flex-start text-vertically-center marginTop5">
-                        <label
-                          htmlFor="homeaddress"
-                          className="label-length100"
-                        >
-                          住所:
-                        </label>
-                        <input
-                          type="text"
-                          id="homeaddress"
-                          name="homeaddress"
-                          value={formDataGeneralInfo.homeaddress}
-                          onChange={handleChange}
-                          className="flex-grow marginTop5"
-                        />
-                      </div>
-                    </div>
-
-                    {/* upload foto */}
-                    <div className="photo-part marginTop30">
-                      <div
-                        id="photo-image"
-                        className="text-horizontally-center"
-                      >
-                        <input
-                          type="file"
-                          id="photo"
-                          name="photo"
-                          accept="image/*"
-                          onChange={handlePhotoUpload}
-                          className="uploadBtn"
-                        />
-                        {formDataGeneralInfo.photo && (
-                          <img
-                            src={URL.createObjectURL(formDataGeneralInfo.photo)}
-                            alt="Uploaded"
-                            className="uploaded-image"
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>{" "}
-                <div className="space-between marginTop5">
-                  <div className="flex-start text-vertically-center">
-                    <label htmlFor="phone" className="label-length100">
-                      電話:
-                    </label>
-                    <input
-                      type="text"
-                      id="phone"
-                      name="phone"
-                      value={formDataGeneralInfo.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="flex-start text-vertically-center">
-                    <label htmlFor="email" className="label-length80">
-                      Email:
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formDataGeneralInfo.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="flex-shrink text-vertically-center flex-center">
-                    <input
-                      type="number"
-                      id="birthdayYear"
-                      name="birthdayYear"
-                      value={formDataGeneralInfo.birthday.birthdayYear}
-                      onChange={handleChange}
-                      className="text-center"
-                    />
-                    <label htmlFor="birthdayYear">年</label>
-                    <input
-                      type="number"
-                      id="birthdayMonth"
-                      name="birthdayMonth"
-                      value={formDataGeneralInfo.birthday.birthdayMonth}
-                      onChange={handleChange}
-                      className="text-center"
-                    />
-                    <label htmlFor="birthdayMonth">月</label>
-                    <input
-                      type="number"
-                      id="birthdayDay"
-                      name="birthdayDay"
-                      value={formDataGeneralInfo.birthday.birthdayDay}
-                      onChange={handleChange}
-                      className="text-center"
-                    />
-                    <label htmlFor="birthdayDay">日生</label>
-                    <div id="age">({calculateAge()}歳)</div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <Preview appealText={appealText} kibouText={kibouText} formDataHistory={formDataHistory}/>
+            <Preview
+              formDataGeneralInfo={formDataGeneralInfo}
+              appealText={appealText}
+              kibouText={kibouText}
+              formDataHistory={formDataHistory}
+              calculateAge={calculateAge}
+            />
 
             {isEditWindowOpen === true ? (
               <EditWindow
@@ -504,6 +332,10 @@ function App() {
                 handleChangeHistory={handleChangeHistory}
                 handleAddItemHistory={handleAddItemHistory}
                 handleDeleteItemHistory={handleDeleteItemHistory}
+                calculateAge={calculateAge}
+                handleChangeGeneralInfo={handleChangeGeneralInfo}
+                formDataGeneralInfo={formDataGeneralInfo}
+                handlePhotoUpload={handlePhotoUpload}
               />
             ) : null}
           </div>
@@ -519,10 +351,6 @@ function App() {
           handleDrawerClose={handleDrawerClose}
         />
       </Box>
-
-      {/* display whole rirekisho PDF*/}
-      {/* A4サイズは、210mm × 297mm */}
-      {/* B5サイズは「182mm × 257mm」 */}
     </>
   );
 }
