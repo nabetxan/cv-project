@@ -69,7 +69,7 @@ function HistoryList({
           )}
         </tbody>
       </table>
-
+      <div className="border flex-grow"></div>
       {/* Table for Job Experience */}
       <table className="">
         <thead>
