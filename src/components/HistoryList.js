@@ -26,10 +26,9 @@ function HistoryList({
         </thead>
         <tbody>
           {formDataHistory.items.map(
-            (category, categoryIndex) =>
-              category.data &&
-              category.category === "Educational" &&
-              category.data.map((item, index) => (
+            (item) =>
+              item.category === "Educational" &&
+              item.data.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <input
@@ -59,11 +58,11 @@ function HistoryList({
                     />
                   </td>
                   <td>
-                    {index > 0 && (
+                    {
                       <button onClick={() => handleDeleteItemHistory(0, index)}>
                         削除
                       </button>
-                    )}
+                    }
                   </td>
                 </tr>
               ))
@@ -91,10 +90,10 @@ function HistoryList({
         </thead>
         <tbody>
           {formDataHistory.items.map(
-            (category, categoryIndex) =>
-              category.data &&
-              category.category === "Jobs" &&
-              category.data.map((item, index) => (
+            (item) =>
+              item.data &&
+              item.category === "Jobs" &&
+              item.data.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <input
@@ -124,11 +123,11 @@ function HistoryList({
                     />
                   </td>
                   <td>
-                    {index > 0 && (
+                    {
                       <button onClick={() => handleDeleteItemHistory(1, index)}>
                         削除
                       </button>
-                    )}
+                    }
                   </td>
                 </tr>
               ))
@@ -157,10 +156,10 @@ function HistoryList({
         </thead>
         <tbody>
           {formDataHistory.items.map(
-            (category, categoryIndex) =>
-              category.data &&
-              category.category === "Certificate" &&
-              category.data.map((item, index) => (
+            (item) =>
+              item.data &&
+              item.category === "Certificate" &&
+              item.data.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <input
@@ -190,11 +189,11 @@ function HistoryList({
                     />
                   </td>
                   <td>
-                    {index > 0 && (
+                    {
                       <button onClick={() => handleDeleteItemHistory(2, index)}>
                         削除
                       </button>
-                    )}
+                    }
                   </td>
                 </tr>
               ))
