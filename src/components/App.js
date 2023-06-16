@@ -14,6 +14,7 @@ import Preview from "./Preview";
 
 //settings for side bar.
 // This part has to be out side of function. (it re-renders too much)
+
 const drawerWidth = 440;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -181,12 +182,12 @@ function App() {
     return age;
   };
 
-  const handleChangeHistory = (e, index, type) => {
+  const handleChangeHistory = (e, categoryIndex, index) => {
     const { name, value } = e.target;
     setFormDataHistory((prevData) => {
       const updatedItems = [...prevData.items];
-      const itemIndex = updatedItems.findIndex((item) => item.type === type);
-      updatedItems[itemIndex].data[index][name] = value;
+      const itemIndex = updatedItems[categoryIndex].data;
+      itemIndex[index][name] = value;
       return {
         ...prevData,
         items: updatedItems,
@@ -202,7 +203,9 @@ function App() {
         contents: "",
       };
       const updatedItems = [...prevData.items];
-      const itemIndex = updatedItems.findIndex((item) => item.type === type);
+      const itemIndex = updatedItems.findIndex(
+        (item) => item.category === type
+      );
       updatedItems[itemIndex].data.push(newItem);
       return {
         ...prevData,
@@ -211,11 +214,11 @@ function App() {
     });
   };
 
-  const handleDeleteItemHistory = (index, type) => {
+  const handleDeleteItemHistory = (categoryIndex, index) => {
     setFormDataHistory((prevData) => {
       const updatedItems = [...prevData.items];
-      const itemIndex = updatedItems.findIndex((item) => item.type === type);
-      updatedItems[itemIndex].data.splice(index, 1);
+      const items = updatedItems[categoryIndex].data;
+      items.splice(index, 1);
       return {
         ...prevData,
         items: updatedItems,

@@ -155,7 +155,7 @@ td > input {
   height: 297mm;
   border: 1px solid black;
   box-shadow: 2px 2px 2px grey;
-  margin: 50px;
+  margin: 50px auto; 
   padding: 50px;
   background-color: rgb(243, 244, 245);
 }

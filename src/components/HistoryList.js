@@ -14,7 +14,13 @@ function HistoryList({
             <th className="width60px">月</th>
             <th>学歴</th>
             <th className="width60px">
-              <button onClick={handleAddItemHistory}>追加</button>
+              <button
+                onClick={() => {
+                  handleAddItemHistory("Educational");
+                }}
+              >
+                追加
+              </button>
             </th>
           </tr>
         </thead>
@@ -30,14 +36,7 @@ function HistoryList({
                       type="text"
                       name="year"
                       value={item.year}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 0, index)}
                       className="text-center"
                     />
                   </td>
@@ -46,14 +45,7 @@ function HistoryList({
                       type="text"
                       name="month"
                       value={item.month}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 0, index)}
                       className="text-center"
                     />
                   </td>
@@ -62,24 +54,13 @@ function HistoryList({
                       type="text"
                       name="contents"
                       value={item.contents}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 0, index)}
                       className="flex-grow"
                     />
                   </td>
                   <td>
                     {index > 0 && (
-                      <button
-                        onClick={() =>
-                          handleDeleteItemHistory(categoryIndex, index)
-                        }
-                      >
+                      <button onClick={() => handleDeleteItemHistory(0, index)}>
                         削除
                       </button>
                     )}
@@ -98,7 +79,13 @@ function HistoryList({
             <th className="width60px">月</th>
             <th>職歴</th>
             <th className="width60px">
-              <button onClick={handleAddItemHistory}>追加</button>
+              <button
+                onClick={() => {
+                  handleAddItemHistory("Jobs");
+                }}
+              >
+                追加
+              </button>
             </th>
           </tr>
         </thead>
@@ -114,14 +101,7 @@ function HistoryList({
                       type="text"
                       name="year"
                       value={item.year}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 1, index)}
                       className="text-center"
                     />
                   </td>
@@ -130,14 +110,7 @@ function HistoryList({
                       type="text"
                       name="month"
                       value={item.month}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 1, index)}
                       className="text-center"
                     />
                   </td>
@@ -146,24 +119,13 @@ function HistoryList({
                       type="text"
                       name="contents"
                       value={item.contents}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 1, index)}
                       className="flex-grow"
                     />
                   </td>
                   <td>
                     {index > 0 && (
-                      <button
-                        onClick={() =>
-                          handleDeleteItemHistory(categoryIndex, index)
-                        }
-                      >
+                      <button onClick={() => handleDeleteItemHistory(1, index)}>
                         削除
                       </button>
                     )}
@@ -183,7 +145,13 @@ function HistoryList({
             <th className="width60px">月</th>
             <th>免許・資格</th>
             <th className="width60px">
-              <button onClick={handleAddItemHistory}>追加</button>
+              <button
+                onClick={() => {
+                  handleAddItemHistory("Certificate");
+                }}
+              >
+                追加
+              </button>
             </th>
           </tr>
         </thead>
@@ -199,14 +167,7 @@ function HistoryList({
                       type="text"
                       name="year"
                       value={item.year}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 2, index)}
                       className="text-center"
                     />
                   </td>
@@ -215,14 +176,7 @@ function HistoryList({
                       type="text"
                       name="month"
                       value={item.month}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 2, index)}
                       className="text-center"
                     />
                   </td>
@@ -231,24 +185,13 @@ function HistoryList({
                       type="text"
                       name="contents"
                       value={item.contents}
-                      onChange={(e) =>
-                        handleChangeHistory(
-                          e,
-                          categoryIndex,
-                          index,
-                          category.category
-                        )
-                      }
+                      onChange={(e) => handleChangeHistory(e, 2, index)}
                       className="flex-grow"
                     />
                   </td>
                   <td>
                     {index > 0 && (
-                      <button
-                        onClick={() =>
-                          handleDeleteItemHistory(categoryIndex, index)
-                        }
-                      >
+                      <button onClick={() => handleDeleteItemHistory(2, index)}>
                         削除
                       </button>
                     )}
