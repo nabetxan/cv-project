@@ -22,9 +22,8 @@ function EditWindow({
 }) {
   return (
     <Draggable
-      axis="y"
       handle=".edit-window"
-      defaultPosition={{ x: 55, y: -700 }}
+      defaultPosition={{ x: 70, y: -700 }}
       position={null}
       scale={1}
     >
@@ -45,24 +44,34 @@ function EditWindow({
         </IconButton>
         <div className="font-large">{selectedButton}</div>
 
-        <GeneralInfo
-          calculateAge={calculateAge}
-          handleChangeGeneralInfo={handleChangeGeneralInfo}
-          formDataGeneralInfo={formDataGeneralInfo}
-          handlePhotoUpload={handlePhotoUpload}
-        />
+        {selectedButton === "基本情報" ? (
+          <GeneralInfo
+            calculateAge={calculateAge}
+            handleChangeGeneralInfo={handleChangeGeneralInfo}
+            formDataGeneralInfo={formDataGeneralInfo}
+            handlePhotoUpload={handlePhotoUpload}
+          />
+        ) : null}
 
-        <HistoryList
-          formDataHistory={formDataHistory}
-          handleChangeHistory={handleChangeHistory}
-          handleAddItemHistory={handleAddItemHistory}
-          handleDeleteItemHistory={handleDeleteItemHistory}
-        />
-        <TextAreas
-          appealText={appealText}
-          kibouText={kibouText}
-          handleChangeTextArea={handleChangeTextArea}
-        />
+        {selectedButton === "学歴" ||
+        selectedButton === "職歴" ||
+        selectedButton === "免許・資格" ? (
+          <HistoryList
+            formDataHistory={formDataHistory}
+            handleChangeHistory={handleChangeHistory}
+            handleAddItemHistory={handleAddItemHistory}
+            handleDeleteItemHistory={handleDeleteItemHistory}
+            selectedButton={selectedButton}
+          />
+        ) : null}
+        {selectedButton === "志望動機" || selectedButton === "本人希望欄" ? (
+          <TextAreas
+            appealText={appealText}
+            kibouText={kibouText}
+            handleChangeTextArea={handleChangeTextArea}
+            selectedButton={selectedButton}
+          />
+        ) : null}
       </div>
     </Draggable>
   );
