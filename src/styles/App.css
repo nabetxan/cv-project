@@ -172,3 +172,8 @@ td > input {
   background-color: rgb(191, 241, 241);
   overflow: scroll;
 }
+
+.edit-window-header{
+  cursor: move;
+
+}
