@@ -15,7 +15,7 @@ import Preview from "./Preview";
 //settings for side bar.
 // This part has to be out side of function. (it re-renders too much)
 
-const drawerWidth = 440;
+const drawerWidth = 200;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
@@ -57,7 +57,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  justifyContent: "flex-start",
+  justifyContent: "flex flex-start",
 }));
 
 function App() {
@@ -69,17 +69,16 @@ function App() {
         lastUpdateDay: "24",
       },
     },
-    nameFurigana: "",
-    name: "",
+    nameFurigana: "こさるの　みのちゃん",
+    name: "こさるの　ミノちゃん",
     birthday: {
-      birthdayYear: "1984",
-      birthdayMonth: "1",
-      birthdayDay: "9",
-      Age: "",
+      birthdayYear: "2019",
+      birthdayMonth: "3",
+      birthdayDay: "3",
     },
-    homeaddress: "",
-    phone: "",
-    email: "",
+    homeaddress: "大田区かまかま Kosaru Land 1-2-3",
+    phone: "090-1234-5678",
+    email: "minochan@kosaru.com",
     photo: null,
   });
 
@@ -133,8 +132,8 @@ function App() {
     ],
   });
 
-  const [appealText, setAppealText] = useState("nantonaku");
-  const [kibouText, setKibouText] = useState("nandemoii");
+  const [appealText, setAppealText] = useState("なんとなく");
+  const [kibouText, setKibouText] = useState("何でもいい");
   const [selectedButton, setSelectedButton] = useState(null);
   const [isEditWindowOpen, setIsEditWindowOpen] = useState(false);
 
@@ -186,8 +185,8 @@ function App() {
     const { name, value } = e.target;
     setFormDataHistory((prevData) => {
       const updatedItems = [...prevData.items];
-      const itemIndex = updatedItems[categoryIndex].data;
-      itemIndex[index][name] = value;
+      const itemIndex = updatedItems[categoryIndex].data[index];
+      itemIndex[name] = value;
       return {
         ...prevData,
         items: updatedItems,
@@ -195,22 +194,25 @@ function App() {
     });
   };
 
-  const handleAddItemHistory = (type) => {
-    setFormDataHistory((prevData) => {
-      const newItem = {
-        year: "",
-        month: "",
-        contents: "",
-      };
-      const updatedItems = [...prevData.items];
-      const itemIndex = updatedItems.findIndex(
-        (item) => item.category === type
-      );
-      updatedItems[itemIndex].data.push(newItem);
-      return {
-        ...prevData,
-        items: updatedItems,
-      };
+  const handleAddItemHistory = (category) => {
+    const newItem = {
+      year: "",
+      month: "",
+      contents: "",
+    };
+    const updatedItems = formDataHistory.items.map((item) => {
+      if (item.category === category) {
+        return {
+          ...item,
+          data: [...item.data, newItem],
+        };
+      }
+      return item;
+    });
+
+    setFormDataHistory({
+      ...formDataHistory,
+      items: updatedItems,
     });
   };
 
@@ -218,7 +220,9 @@ function App() {
     setFormDataHistory((prevData) => {
       const updatedItems = [...prevData.items];
       const items = updatedItems[categoryIndex].data;
-      items.splice(index, 1);
+      const updatedData = [...items];
+      updatedData.splice(index, 1);
+      updatedItems[categoryIndex].data = updatedData;
       return {
         ...prevData,
         items: updatedItems,
@@ -285,6 +289,17 @@ function App() {
     }));
   };
 
+  const handlePhotoDelete = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      photo: null,
+    }));
+  };
+
+  const print = function () {
+    window.print();
+  };
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -315,6 +330,13 @@ function App() {
           <DrawerHeader />
 
           <div>A4サイズプレビュー</div>
+          <input
+            type="button"
+            value="印刷"
+            onClick={print}
+            className="print-btn"
+          />
+
           <div id="a4">
             <Preview
               formDataGeneralInfo={formDataGeneralInfo}
@@ -339,6 +361,7 @@ function App() {
                 handleChangeGeneralInfo={handleChangeGeneralInfo}
                 formDataGeneralInfo={formDataGeneralInfo}
                 handlePhotoUpload={handlePhotoUpload}
+                handlePhotoDelete={handlePhotoDelete}
               />
             ) : null}
           </div>

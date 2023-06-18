@@ -8,81 +8,42 @@ body {
   text-align: center;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
-
-#title {
-  font-size: xx-large;
-}
-
-.space-between {
-  display: flex;
-  justify-content: space-between;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-}
-.font-large {
-  font-size: large;
-}
-
 .margin5 {
   margin: 5px;
 }
 
-.flex-start {
-  display: flex;
-  justify-content: flex-start;
+.margin-photo {
+  margin: 15px 20px 20px 30px;
 }
 
-.flex-shrink {
-  flex-shrink: 1;
-}
-#name,
-#homeaddress {
-  height: 50px;
+.marginTop5 {
+  margin-top: 5px;
 }
 
-.text-vertically-center {
-  align-items: center;
-}
-
-#lastUpdateYear,
-#birthdayYear,
-#age {
-  width: 55px;
-}
-
-#lastUpdateMonth,
-#lastUpdateDay,
-#birthdayMonth,
-#birthdayDay {
-  width: 40px;
-}
-
-.furigana-border {
-  border: 1px solid black;
-  border-bottom-style: dotted;
-}
-.name-border {
-  border: 1px solid black;
-  border-top: none;
-}
-.phone-label,
-.email-label {
-  width: 55px;
+.marginTop30 {
+  margin-top: 30px;
 }
 
 .email {
   margin-right: 2px;
   margin-left: 2px;
 }
-.flex-grow {
-  flex-grow: 1;
+
+.width60px {
+  width: 60px;
+}
+
+#lastUpdateYear,
+#birthdayYear,
+#age {
+  width: 58px;
+}
+
+#lastUpdateMonth,
+#lastUpdateDay,
+#birthdayMonth,
+#birthdayDay {
+  width: 45px;
 }
 
 .label-length100 {
@@ -93,8 +54,93 @@ body {
   width: 75px;
 }
 
+.label-length55 {
+  width: 55px;
+}
+
 .label-length80 {
   width: 80px;
+}
+
+.height70 {
+  height: 70px;
+}
+
+.height50 {
+  height: 50px;
+}
+
+.height30 {
+  height: 20px;
+}
+
+#title {
+  font-size: xx-large;
+}
+
+.font-xLarge {
+  font-size: x-large;
+}
+.font-large {
+  font-size: large;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-vertically-center {
+  align-items: center;
+}
+
+.padding-side {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.furigana-border {
+  border-bottom-style: dotted;
+}
+
+.name-border {
+  border-top: none;
 }
 
 #photo-image {
@@ -103,14 +149,6 @@ body {
   background-color: darkgray;
   display: flex;
   align-items: flex-end;
-}
-
-.text-horizontally-center {
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
-  align-content: center;
 }
 
 .photo-part {
@@ -124,24 +162,9 @@ input[type="file"]::-webkit-file-upload-button {
   width: 100%;
 }
 
-.bold {
-  font-weight: bolder;
-}
-
-.marginTop5 {
-  margin-top: 5px;
-}
-
-.marginTop30 {
-  margin-top: 30px;
-}
-
 .uploaded-image {
+  height: 100%;
   width: 100%;
-}
-
-.border {
-  border: 1px solid black;
 }
 
 table {
@@ -152,23 +175,12 @@ td > input {
   width: 90%;
 }
 
-.text-center {
-  text-align: center;
-}
-.width60px {
-  width: 60px;
-}
-
-.height30 {
-  height: 20px;
-}
-
 #a4 {
   width: 210mm;
   height: 297mm;
   border: 1px solid black;
   box-shadow: 2px 2px 2px grey;
-  margin: 50px auto;
+  margin: 0px auto;
   padding: 50px;
   background-color: rgb(243, 244, 245);
 }
@@ -183,23 +195,6 @@ td > input {
   overflow: scroll;
   cursor: move;
 }
-.padding-side {
-  text-align: left;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.height70 {
-  height: 70px;
-}
-
-.font-xLarge {
-  font-size: x-large;
-}
-
-.height50 {
-  height: 50px;
-}
 
 table,
 td,
@@ -207,4 +202,36 @@ tr,
 th {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.print-btn {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  padding: 10px 20px;
+}
+
+@media print {
+  body {
+    visibility: hidden;
+  }
+
+  #a4,
+  main,
+  header,
+  .css-fiov70,
+  #title,
+  .print-btn {
+    margin: 0;
+  }
+
+  #a4 {
+    margin: 0 auto;
+    scale: 105% 105%;
+    border: black solid 2px;
+  }
+
+  #a4,
+  #a4 * {
+    visibility: visible;
+  }
 }

@@ -5,17 +5,18 @@ function GeneralInfo({
   handleChangeGeneralInfo,
   formDataGeneralInfo,
   handlePhotoUpload,
+  handlePhotoDelete,
 }) {
   return (
     <div id="general">
       <form>
         <div className="">
-          <div className="flex-center">
-            <div className="col flex-grow">
-              <div className="space-between text-vertically-center">
+          <div className="flex flex-center">
+            <div className="flex col flex-grow">
+              <div className="flex space-between text-vertically-center">
                 <div className="font-large margin5 bold">履歴書</div>
 
-                <div className="flex-shrink text-vertically-center">
+                <div className="flex flex-shrink text-vertically-center">
                   <input
                     type="number"
                     id="lastUpdateYear"
@@ -51,7 +52,7 @@ function GeneralInfo({
                 </div>
               </div>
               <div className="border"></div>
-              <div className="flex-start text-vertically-center marginTop5">
+              <div className="flex flex-start text-vertically-center marginTop5">
                 <label htmlFor="nameFurigana" className="label-length75">
                   ふりがな:
                 </label>
@@ -61,12 +62,12 @@ function GeneralInfo({
                   name="nameFurigana"
                   value={formDataGeneralInfo.nameFurigana}
                   onChange={handleChangeGeneralInfo}
-                  className="flex-grow"
+                  className="flex-grow padding-side"
                 />
               </div>
 
-              <div className="flex-start text-vertically-center">
-                <label htmlFor="name" className="label-length75">
+              <div className="flex flex-start text-vertically-center">
+                <label htmlFor="name" className="label-length55">
                   氏名:
                 </label>
                 <input
@@ -75,12 +76,12 @@ function GeneralInfo({
                   name="name"
                   value={formDataGeneralInfo.name}
                   onChange={handleChangeGeneralInfo}
-                  className="flex-grow"
+                  className="flex-grow height50 padding-side font-xLarge"
                 />
               </div>
 
-              <div className="flex-start text-vertically-center marginTop5">
-                <label htmlFor="homeaddress" className="label-length75">
+              <div className="flex flex-start text-vertically-center marginTop5">
+                <label htmlFor="homeaddress" className="label-length55">
                   住所:
                 </label>
                 <input
@@ -89,19 +90,20 @@ function GeneralInfo({
                   name="homeaddress"
                   value={formDataGeneralInfo.homeaddress}
                   onChange={handleChangeGeneralInfo}
-                  className="flex-grow marginTop5"
+                  className="flex-grow marginTop5 height50 padding-side font-large"
                 />
               </div>
             </div>
             <PhotoUpload
               handlePhotoUpload={handlePhotoUpload}
+              handlePhotoDelete={handlePhotoDelete}
               formDataGeneralInfo={formDataGeneralInfo}
             />
           </div>
         </div>{" "}
-        <div className="space-between marginTop5">
-          <div className="flex-start text-vertically-center">
-            <label htmlFor="phone" className="phone-label">
+        <div className="flex space-between marginTop5">
+          <div className="flex flex-start text-vertically-center">
+            <label htmlFor="phone" className="label-length55">
               電話:
             </label>
             <input
@@ -110,10 +112,11 @@ function GeneralInfo({
               name="phone"
               value={formDataGeneralInfo.phone}
               onChange={handleChangeGeneralInfo}
+              className="text-center"
             />
           </div>
-          <div className="flex-start text-vertically-center">
-            <label htmlFor="email" className="email-label">
+          <div className="flex flex-start text-vertically-center">
+            <label htmlFor="email" className="label-length55">
               Email:
             </label>
             <input
@@ -122,10 +125,11 @@ function GeneralInfo({
               name="email"
               value={formDataGeneralInfo.email}
               onChange={handleChangeGeneralInfo}
+              className="text-center"
             />
           </div>
 
-          <div className="flex-shrink text-vertically-center flex-center">
+          <div className="flex flex-shrink text-vertically-center flex-center">
             <input
               type="number"
               id="birthdayYear"

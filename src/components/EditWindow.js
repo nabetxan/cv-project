@@ -19,11 +19,12 @@ function EditWindow({
   handleChangeGeneralInfo,
   formDataGeneralInfo,
   handlePhotoUpload,
+  handlePhotoDelete,
 }) {
   return (
     <Draggable
       handle=".edit-window"
-      defaultPosition={{ x: 70, y: -700 }}
+      defaultPosition={{ x: 70, y: -900 }}
       position={null}
       scale={1}
     >
@@ -42,7 +43,7 @@ function EditWindow({
         >
           <CloseIcon />
         </IconButton>
-        <div className="font-large">{selectedButton}</div>
+        <div className="font-xLarge bold">{selectedButton}</div>
 
         {selectedButton === "基本情報" ? (
           <GeneralInfo
@@ -50,6 +51,7 @@ function EditWindow({
             handleChangeGeneralInfo={handleChangeGeneralInfo}
             formDataGeneralInfo={formDataGeneralInfo}
             handlePhotoUpload={handlePhotoUpload}
+            handlePhotoDelete={handlePhotoDelete}
           />
         ) : null}
 

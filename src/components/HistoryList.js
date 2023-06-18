@@ -58,7 +58,7 @@ function HistoryList({
                           name="contents"
                           value={item.contents}
                           onChange={(e) => handleChangeHistory(e, 0, index)}
-                          className="flex-grow"
+                          className="flex-grow padding-side"
                         />
                       </td>
                       <td>
@@ -130,7 +130,7 @@ function HistoryList({
                           name="contents"
                           value={item.contents}
                           onChange={(e) => handleChangeHistory(e, 1, index)}
-                          className="flex-grow"
+                          className="flex-grow padding-side"
                         />
                       </td>
                       <td>
@@ -202,7 +202,7 @@ function HistoryList({
                           name="contents"
                           value={item.contents}
                           onChange={(e) => handleChangeHistory(e, 2, index)}
-                          className="flex-grow"
+                          className="flex-grow padding-side"
                         />
                       </td>
                       <td>

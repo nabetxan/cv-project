@@ -8,12 +8,12 @@ function Preview({
   return (
     <>
       {/* General Info */}
-      <div className="flex-center">
-        <div className="col flex-grow">
-          <div className="space-between text-vertically-center">
+      <div className="flex flex-center">
+        <div className="flex col flex-grow">
+          <div className="flex space-between text-vertically-center">
             <div className="font-large margin5 bold">履歴書</div>
 
-            <div className="flex-shrink text-vertically-center flex-center">
+            <div className="flex flex-shrink text-vertically-center flex-center">
               {formDataGeneralInfo.lastUpdate.modifiedvalue.lastUpdateYear}
 
               <div>年</div>
@@ -24,10 +24,10 @@ function Preview({
             </div>
           </div>
 
-          <div className="border col"></div>
-          <div className="flex-center">
-            <div className="flex-grow">
-              <div className="flex-start text-vertically-center marginTop5 furigana-border">
+          <div className="flex col border marginTop5"></div>
+          <div className="flex flex-center marginTop5">
+            <div className="flex-grow marginTop5">
+              <div className="flex flex-start text-vertically-center marginTop5 border furigana-border">
                 <div className="label-length75">ふりがな:</div>
                 <div className="flex-grow">
                   <div className="padding-side">
@@ -36,8 +36,8 @@ function Preview({
                 </div>
               </div>
 
-              <div className="flex-start text-vertically-center name-border height70">
-                <div className="label-length75">氏名:</div>
+              <div className="flex flex-start text-vertically-center border name-border height70">
+                <div className="label-length55">氏名:</div>
                 <div className="flex-grow">
                   <div className="padding-side font-xLarge">
                     {formDataGeneralInfo.name}
@@ -45,17 +45,20 @@ function Preview({
                 </div>
               </div>
 
-              <div className="flex-start text-vertically-center marginTop5 border height50">
-                <div className="label-length75">住所:</div>
+              <div className="flex flex-start text-vertically-center marginTop5 border height50">
+                <div className="label-length55">住所:</div>
 
-                <div className="flex-grow marginTop5">
+                <div className="flex-grow">
                   <div className="padding-side font-large">
                     {formDataGeneralInfo.homeaddress}
                   </div>
                 </div>
               </div>
             </div>
-            <div id="photo-image" className="text-horizontally-center margin5">
+            <div
+              id="photo-image"
+              className="margin-photo"
+            >
               {formDataGeneralInfo.photo && (
                 <img
                   src={URL.createObjectURL(formDataGeneralInfo.photo)}
@@ -65,24 +68,24 @@ function Preview({
               )}
             </div>
           </div>
-          <div className="flex-center height50">
-            <div className="flex-start text-vertically-center border flex-grow">
-              <div className="label-length75">電話:</div>
+          <div className="flex flex-center height50">
+            <div className="flex flex-start text-vertically-center border flex-grow">
+              <div className="label-length55">電話:</div>
 
               <div className="flex-grow font-large">
                 {formDataGeneralInfo.phone}
               </div>
             </div>
 
-            <div className="flex-start text-vertically-center border  flex-grow email">
-              <div className="label-length75">Email:</div>
+            <div className="flex flex-start text-vertically-center border  flex-grow email">
+              <div className="label-length55">Email:</div>
 
               <div className="flex-grow font-larg">
                 {formDataGeneralInfo.email}
               </div>
             </div>
 
-            <div className="flex-shrink text-vertically-center flex-center text-center border  flex-grow">
+            <div className="flex flex-shrink text-vertically-center flex-center text-center border  flex-grow">
               {formDataGeneralInfo.birthday.birthdayYear}
               <div>年</div>
               {formDataGeneralInfo.birthday.birthdayMonth}

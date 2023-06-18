@@ -29,7 +29,7 @@ function TextAreas({
         <>
           <div className="border flex-grow"></div>
           {/* shiboudouki */}
-          <div className="flex-start text-vertically-center marginTop5">
+          <div className="marginTop5 flex">
             <label htmlFor="appeal" className="label-length100">
               志望動機:
             </label>
@@ -39,7 +39,7 @@ function TextAreas({
               name="appeal"
               value={appealText}
               onChange={handleChangeTextArea}
-              className="flex-grow"
+              className="flex-grow padding-side"
             />
           </div>
         </>
@@ -49,7 +49,7 @@ function TextAreas({
         <>
           <div className="border flex-grow"></div>
           {/* honnin kibou */}
-          <div className="flex-start text-vertically-center marginTop5">
+          <div className="marginTop5 flex">
             <label htmlFor="kibou" className="label-length100">
               本人希望欄:
             </label>
@@ -59,7 +59,7 @@ function TextAreas({
               name="kibou"
               value={kibouText}
               onChange={handleChangeTextArea}
-              className="flex-grow"
+              className="flex-grow  padding-side"
             />
           </div>
         </>
