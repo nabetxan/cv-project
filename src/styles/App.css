@@ -204,6 +204,10 @@ th {
   border-collapse: collapse;
 }
 
+tr {
+  height: 24px;
+}
+
 .print-btn {
   margin-top: 10px;
   margin-bottom: 50px;
