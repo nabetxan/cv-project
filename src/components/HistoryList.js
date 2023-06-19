@@ -30,16 +30,19 @@ function HistoryList({
             </thead>
             <tbody>
               {formDataHistory.items.map(
-                (item) =>
-                  item.category === "Educational" &&
-                  item.data.map((item, index) => (
+                (histroryItem) =>
+                  histroryItem.data &&
+                  histroryItem.category === "Educational" &&
+                  histroryItem.data.map((data, index) => (
                     <tr key={index}>
                       <td>
                         <input
                           type="text"
                           name="year"
-                          value={item.year}
-                          onChange={(e) => handleChangeHistory(e, 0, index)}
+                          value={data.year}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="text-center"
                         />
                       </td>
@@ -47,8 +50,10 @@ function HistoryList({
                         <input
                           type="text"
                           name="month"
-                          value={item.month}
-                          onChange={(e) => handleChangeHistory(e, 0, index)}
+                          value={data.month}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="text-center"
                         />
                       </td>
@@ -56,15 +61,22 @@ function HistoryList({
                         <input
                           type="text"
                           name="contents"
-                          value={item.contents}
-                          onChange={(e) => handleChangeHistory(e, 0, index)}
+                          value={data.contents}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="flex-grow padding-side"
                         />
                       </td>
                       <td>
                         {
                           <button
-                            onClick={() => handleDeleteItemHistory(0, index)}
+                            onClick={() =>
+                              handleDeleteItemHistory(
+                                histroryItem.category,
+                                index
+                              )
+                            }
                           >
                             削除
                           </button>
@@ -101,17 +113,19 @@ function HistoryList({
             </thead>
             <tbody>
               {formDataHistory.items.map(
-                (item) =>
-                  item.data &&
-                  item.category === "Jobs" &&
-                  item.data.map((item, index) => (
+                (histroryItem) =>
+                  histroryItem.data &&
+                  histroryItem.category === "Jobs" &&
+                  histroryItem.data.map((data, index) => (
                     <tr key={index}>
                       <td>
                         <input
                           type="text"
                           name="year"
-                          value={item.year}
-                          onChange={(e) => handleChangeHistory(e, 1, index)}
+                          value={data.year}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="text-center"
                         />
                       </td>
@@ -119,8 +133,10 @@ function HistoryList({
                         <input
                           type="text"
                           name="month"
-                          value={item.month}
-                          onChange={(e) => handleChangeHistory(e, 1, index)}
+                          value={data.month}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="text-center"
                         />
                       </td>
@@ -128,15 +144,22 @@ function HistoryList({
                         <input
                           type="text"
                           name="contents"
-                          value={item.contents}
-                          onChange={(e) => handleChangeHistory(e, 1, index)}
+                          value={data.contents}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="flex-grow padding-side"
                         />
                       </td>
                       <td>
                         {
                           <button
-                            onClick={() => handleDeleteItemHistory(1, index)}
+                            onClick={() =>
+                              handleDeleteItemHistory(
+                                histroryItem.category,
+                                index
+                              )
+                            }
                           >
                             削除
                           </button>
@@ -173,17 +196,19 @@ function HistoryList({
             </thead>
             <tbody>
               {formDataHistory.items.map(
-                (item) =>
-                  item.data &&
-                  item.category === "Certificate" &&
-                  item.data.map((item, index) => (
+                (histroryItem) =>
+                  histroryItem.data &&
+                  histroryItem.category === "Certificate" &&
+                  histroryItem.data.map((data, index) => (
                     <tr key={index}>
                       <td>
                         <input
                           type="text"
                           name="year"
-                          value={item.year}
-                          onChange={(e) => handleChangeHistory(e, 2, index)}
+                          value={data.year}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="text-center"
                         />
                       </td>
@@ -191,8 +216,10 @@ function HistoryList({
                         <input
                           type="text"
                           name="month"
-                          value={item.month}
-                          onChange={(e) => handleChangeHistory(e, 2, index)}
+                          value={data.month}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="text-center"
                         />
                       </td>
@@ -200,15 +227,22 @@ function HistoryList({
                         <input
                           type="text"
                           name="contents"
-                          value={item.contents}
-                          onChange={(e) => handleChangeHistory(e, 2, index)}
+                          value={data.contents}
+                          onChange={(e) =>
+                            handleChangeHistory(e, histroryItem.category, index)
+                          }
                           className="flex-grow padding-side"
                         />
                       </td>
                       <td>
                         {
                           <button
-                            onClick={() => handleDeleteItemHistory(2, index)}
+                            onClick={() =>
+                              handleDeleteItemHistory(
+                                histroryItem.category,
+                                index
+                              )
+                            }
                           >
                             削除
                           </button>

@@ -181,10 +181,13 @@ function App() {
     return age;
   };
 
-  const handleChangeHistory = (e, categoryIndex, index) => {
+  const handleChangeHistory = (e, categoryName, index) => {
     const { name, value } = e.target;
     setFormDataHistory((prevData) => {
       const updatedItems = [...prevData.items];
+      const categoryIndex = updatedItems.findIndex(
+        (category) => category.category === categoryName
+      );
       const itemIndex = updatedItems[categoryIndex].data[index];
       itemIndex[name] = value;
       return {
@@ -216,9 +219,12 @@ function App() {
     });
   };
 
-  const handleDeleteItemHistory = (categoryIndex, index) => {
+  const handleDeleteItemHistory = (categoryName, index) => {
     setFormDataHistory((prevData) => {
       const updatedItems = [...prevData.items];
+      const categoryIndex = updatedItems.findIndex(
+        (category) => category.category === categoryName
+      );
       const items = updatedItems[categoryIndex].data;
       const updatedData = [...items];
       updatedData.splice(index, 1);
