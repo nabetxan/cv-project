@@ -4,6 +4,7 @@ import TextAreas from "./TextAreas";
 import HistoryList from "./HistoryList";
 import GeneralInfo from "./GeneralInfo";
 import Draggable from "react-draggable";
+import { CATEGORY } from "./App";
 
 function EditWindow({
   handleisEditWindowOpen,
@@ -45,7 +46,7 @@ function EditWindow({
         </IconButton>
         <div className="font-xLarge bold">{selectedButton}</div>
 
-        {selectedButton === "基本情報" ? (
+        {selectedButton === CATEGORY.KIHONJOUHOU ? (
           <GeneralInfo
             calculateAge={calculateAge}
             handleChangeGeneralInfo={handleChangeGeneralInfo}
@@ -55,9 +56,9 @@ function EditWindow({
           />
         ) : null}
 
-        {selectedButton === "学歴" ||
-        selectedButton === "職歴" ||
-        selectedButton === "免許・資格" ? (
+        {selectedButton === CATEGORY.GAKUREKI ||
+        selectedButton === CATEGORY.SHOKUREKI ||
+        selectedButton === CATEGORY.MENKYOSHIKAKU ? (
           <HistoryList
             formDataHistory={formDataHistory}
             handleChangeHistory={handleChangeHistory}
@@ -66,7 +67,8 @@ function EditWindow({
             selectedButton={selectedButton}
           />
         ) : null}
-        {selectedButton === "志望動機" || selectedButton === "本人希望欄" ? (
+        {selectedButton === CATEGORY.SHIBOUDOUKI ||
+        selectedButton === CATEGORY.HONNINKIBOURAN ? (
           <TextAreas
             appealText={appealText}
             kibouText={kibouText}

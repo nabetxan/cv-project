@@ -15,6 +15,14 @@ import Preview from "./Preview";
 //settings for side bar.
 // This part has to be out side of function. (it re-renders too much)
 
+export const CATEGORY = {
+  KIHONJOUHOU: "基本情報",
+  GAKUREKI: "学歴",
+  SHOKUREKI: "職歴",
+  MENKYOSHIKAKU: "免許・資格",
+  SHIBOUDOUKI: "志望動機",
+  HONNINKIBOURAN: "本人希望欄",
+};
 const drawerWidth = 200;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -85,7 +93,7 @@ function App() {
   const [formDataHistory, setFormDataHistory] = useState({
     items: [
       {
-        category: "Educational",
+        category: CATEGORY.GAKUREKI,
         data: [
           {
             year: "2020",
@@ -100,7 +108,7 @@ function App() {
         ],
       },
       {
-        category: "Jobs",
+        category: CATEGORY.SHOKUREKI,
         data: [
           {
             year: "2020",
@@ -115,7 +123,7 @@ function App() {
         ],
       },
       {
-        category: "Certificate",
+        category: CATEGORY.MENKYOSHIKAKU,
         data: [
           {
             year: "2020",

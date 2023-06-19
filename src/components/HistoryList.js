@@ -1,3 +1,5 @@
+import { CATEGORY } from "./App";
+
 function HistoryList({
   formDataHistory,
   handleChangeHistory,
@@ -7,7 +9,7 @@ function HistoryList({
 }) {
   return (
     <>
-      {selectedButton === "学歴" ? (
+      {selectedButton === CATEGORY.GAKUREKI ? (
         <>
           <div className="border flex-grow"></div>
           {/* input educational experience */}
@@ -20,7 +22,7 @@ function HistoryList({
                 <th className="width60px">
                   <button
                     onClick={() => {
-                      handleAddItemHistory("Educational");
+                      handleAddItemHistory(CATEGORY.GAKUREKI);
                     }}
                   >
                     追加
@@ -32,7 +34,7 @@ function HistoryList({
               {formDataHistory.items.map(
                 (histroryItem) =>
                   histroryItem.data &&
-                  histroryItem.category === "Educational" &&
+                  histroryItem.category === CATEGORY.GAKUREKI &&
                   histroryItem.data.map((data, index) => (
                     <tr key={index}>
                       <td>
@@ -90,7 +92,7 @@ function HistoryList({
         </>
       ) : null}
 
-      {selectedButton === "職歴" ? (
+      {selectedButton === CATEGORY.SHOKUREKI ? (
         <>
           <div className="border flex-grow"></div>
           {/* Table for Job Experience */}
@@ -103,7 +105,7 @@ function HistoryList({
                 <th className="width60px">
                   <button
                     onClick={() => {
-                      handleAddItemHistory("Jobs");
+                      handleAddItemHistory(CATEGORY.SHOKUREKI);
                     }}
                   >
                     追加
@@ -115,7 +117,7 @@ function HistoryList({
               {formDataHistory.items.map(
                 (histroryItem) =>
                   histroryItem.data &&
-                  histroryItem.category === "Jobs" &&
+                  histroryItem.category === CATEGORY.SHOKUREKI &&
                   histroryItem.data.map((data, index) => (
                     <tr key={index}>
                       <td>
@@ -173,7 +175,7 @@ function HistoryList({
         </>
       ) : null}
 
-      {selectedButton === "免許・資格" ? (
+      {selectedButton === CATEGORY.MENKYOSHIKAKU ? (
         <>
           <div className="border flex-grow"></div>
           {/* input certificate */}
@@ -186,7 +188,7 @@ function HistoryList({
                 <th className="width60px">
                   <button
                     onClick={() => {
-                      handleAddItemHistory("Certificate");
+                      handleAddItemHistory(CATEGORY.MENKYOSHIKAKU);
                     }}
                   >
                     追加
@@ -198,7 +200,7 @@ function HistoryList({
               {formDataHistory.items.map(
                 (histroryItem) =>
                   histroryItem.data &&
-                  histroryItem.category === "Certificate" &&
+                  histroryItem.category === CATEGORY.MENKYOSHIKAKU &&
                   histroryItem.data.map((data, index) => (
                     <tr key={index}>
                       <td>
