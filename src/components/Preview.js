@@ -1,3 +1,5 @@
+import { CATEGORY } from "./App";
+
 function Preview({
   formDataGeneralInfo,
   appealText,
@@ -55,10 +57,7 @@ function Preview({
                 </div>
               </div>
             </div>
-            <div
-              id="photo-image"
-              className="margin-photo"
-            >
+            <div id="photo-image" className="margin-photo">
               {formDataGeneralInfo.photo && (
                 <img
                   src={URL.createObjectURL(formDataGeneralInfo.photo)}
@@ -112,7 +111,7 @@ function Preview({
             {formDataHistory.items.map(
               (category) =>
                 category.data &&
-                category.category === "Educational" &&
+                category.category === CATEGORY.GAKUREKI &&
                 category.data.map((item, index) => (
                   <tr key={index}>
                     <td className="text-center">{item.year}</td>
@@ -140,7 +139,7 @@ function Preview({
             {formDataHistory.items.map(
               (category) =>
                 category.data &&
-                category.category === "Jobs" &&
+                category.category === CATEGORY.SHOKUREKI &&
                 category.data.map((item, index) => (
                   <tr key={index}>
                     <td className="text-center">{item.year}</td>
@@ -168,7 +167,7 @@ function Preview({
             {formDataHistory.items.map(
               (category) =>
                 category.data &&
-                category.category === "Certificate" &&
+                category.category === CATEGORY.MENKYOSHIKAKU &&
                 category.data.map((item, index) => (
                   <tr key={index}>
                     <td className="text-center">{item.year}</td>

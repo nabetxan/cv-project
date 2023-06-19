@@ -13,6 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { CATEGORY } from "./App";
 
 function Sidebar({
   DrawerHeader,
@@ -48,13 +49,13 @@ function Sidebar({
       <Divider />
       <List>
         {[
-          "基本情報",
-          "学歴",
-          "職歴",
-          "免許・資格",
-          "志望動機",
-          "本人希望欄",
-        ].map((text, index) => (
+          CATEGORY.KIHONJOUHOU,
+          CATEGORY.GAKUREKI,
+          CATEGORY.SHOKUREKI,
+          CATEGORY.MENKYOSHIKAKU,
+          CATEGORY.SHIBOUDOUKI,
+          CATEGORY.HONNINKIBOURAN,
+        ].map((text) => (
           <ListItem key={text} disablePadding>
             <ListItemButton onClick={() => handleisEditWindowOpen(text)}>
               <ListItemIcon>
