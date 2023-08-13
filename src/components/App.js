@@ -84,7 +84,7 @@ function App() {
       birthdayMonth: "3",
       birthdayDay: "3",
     },
-    homeaddress: "大田区かまかま Kosaru Land 1-2-3",
+    homeaddress: "Kosaru Land 1-2-3",
     phone: "090-1234-5678",
     email: "minochan@kosaru.com",
     photo: null,
